@@ -1,0 +1,1 @@
+# rate-a-place-client
