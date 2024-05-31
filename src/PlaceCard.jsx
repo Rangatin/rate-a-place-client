@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './PlaceCard.css';
 import Location from './Location';
-import NumberedRating from './NumberedRating'
 import StarRating from './StarRating'
 
 

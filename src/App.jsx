@@ -1,11 +1,8 @@
-import { useState } from 'react'
 import './App.css'
 import HomeSection from './HomeSection'
 import PlaceList from './PlaceList'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const places = [
     {
       id: 1,
