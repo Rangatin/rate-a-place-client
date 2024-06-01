@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 import StarRating from './StarRating';
+import { API_GATEWAY, API_KEY } from './apiConfig';
 
-const DataUpdater = ({ placeId, averageRating, numRatings }) => {
+const DataUpdater = ({ placeId, averageRating, numRatings, onSuccess }) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for success dialog visibility
     const [user_rating, setRating] = useState(false);
     const [starRatingReadOnly, setReadOnly] = useState(false);
 
-    const API_GATEWAY = process.env.API_GATEWAY_HOST
-
     const calcNewRating = () => {
-
         const calcultednewRating = (averageRating * numRatings + user_rating) / (numRatings + 1);
         const roundedNewRating = calcultednewRating.toFixed(2);
         // Update data with the calculated rating
@@ -25,8 +23,16 @@ const DataUpdater = ({ placeId, averageRating, numRatings }) => {
         try {
             debugger;
             const response = await axios.patch(API_GATEWAY, {
+                headers: {
+                    'x-api-key': API_KEY
+                },
                 body: JSON.stringify(data),
             });
+
+            if (onSuccess) {
+                onSuccess({ ...data, originalAverageRating: averageRating, originalNumRatings: numRatings }); // Return updated data with original values
+            }
+
             setIsButtonDisabled(true);
             setRating(0);
             setReadOnly(true);

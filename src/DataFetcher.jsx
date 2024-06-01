@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import axios from 'axios';
+import { API_GATEWAY, API_KEY } from './apiConfig';
 
 const DataFetcher = ({ setData }) => {
-  const API_GATEWAY = process.env.API_GATEWAY_HOST
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(API_GATEWAY);
+        debugger;
+        const response = await axios.get(API_GATEWAY, {
+          headers: {
+            'x-api-key': API_KEY
+          }
+        });
         const parsedData = JSON.parse(response.data.body);
         const sortedData = parsedData.sort((a, b) => {
           // sort by average rating
