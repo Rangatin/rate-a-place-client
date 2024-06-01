@@ -22,7 +22,7 @@ const DataFetcher = ({ setData }) => {
     fetchData();
   }, [setData]);
 
-  return null; // Since this component only handles side effects, it doesn't render anything
+  return null; // Since this component only handles side effects, doesn't render anything
 };
 
 export default DataFetcher;
