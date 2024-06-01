@@ -2,9 +2,11 @@ import React from 'react';
 
 function HomeSection() {
   return (
-    <header>
+    <div>
+      <header>
       <h1>Rate a Place</h1>
-    </header>
+      </header>
+    </div>
   );
 }
 
