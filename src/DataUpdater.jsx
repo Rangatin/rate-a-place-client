@@ -50,7 +50,6 @@ const DataUpdater = ({ placeId, averageRating, numRatings, onSuccess }) => {
                 Rate
             </button>
         </div>
-
     );
 };
 
