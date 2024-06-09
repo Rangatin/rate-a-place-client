@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import { API_GATEWAY, API_KEY } from './apiConfig';
+import { VITE_HOST } from './apiConfig';
 
 const DataFetcher = ({ setData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        debugger;
-        const response = await axios.get(API_GATEWAY, {
-          headers: {
-            'x-api-key': API_KEY
-          }
+        const response = await axios.get(`${VITE_HOST}/places`, {
         });
         const parsedData = JSON.parse(response.data.body);
         const sortedData = parsedData.sort((a, b) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import StarRating from './StarRating';
-import { API_GATEWAY, API_KEY } from './apiConfig';
+import { VITE_HOST } from './apiConfig';
 
 const DataUpdater = ({ placeId, averageRating, numRatings, onSuccess }) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State for success dialog visibility
@@ -22,10 +22,7 @@ const DataUpdater = ({ placeId, averageRating, numRatings, onSuccess }) => {
     const updateData = async (data) => {
         try {
             debugger;
-            const response = await axios.patch(API_GATEWAY, {
-                headers: {
-                    'x-api-key': API_KEY
-                },
+            const response = await axios.patch(`${VITE_HOST}/places`, {
                 body: JSON.stringify(data),
             });
 

@@ -3,7 +3,7 @@ import './PlaceCard.css';
 import Location from './Location';
 import DataUpdater from './DataUpdater';
 
-import { API_GATEWAY, API_KEY } from './apiConfig';
+import { VITE_HOST } from './apiConfig';
 
 const PlaceCard = ({ place, rank }) => {
   const [fetchedData, setFetchedData] = useState(place); // Store fetched data initially
@@ -11,10 +11,7 @@ const PlaceCard = ({ place, rank }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_GATEWAY}places?PlaceId=${place.PlaceId}`, {
-        headers: {
-          'x-api-key': API_KEY
-        }
+      const response = await axios.get(`${VITE_HOST}/places?PlaceId=${place.PlaceId}`, {
       }); 
       setFetchedData(response.data);
     } catch (error) {
@@ -39,7 +36,7 @@ const PlaceCard = ({ place, rank }) => {
       <div className="place-info">
         <h3>{place.Name}</h3> 
         <h5 className="inline-h5">
-          <strong>Average Rating:</strong> {isRatingUpdated ? fetchedData.AverageRating : place.AverageRating}
+          <strong>Average Rating: {isRatingUpdated ? fetchedData.AverageRating : place.AverageRating} </strong>
           <div className="gray-text">({isRatingUpdated ? fetchedData.NumRatings : place.NumRatings})</div>
         </h5>
         <Location latitude={place.Latitude} longitude={place.Longitude} />

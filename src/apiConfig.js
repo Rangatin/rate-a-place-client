@@ -1,4 +1,3 @@
-const API_GATEWAY = import.meta.env.VITE_API_GATEWAY_HOST;
-const API_KEY = import.meta.env.VITE_API_KEY;
+const VITE_HOST = import.meta.env.VITE_HOST;
 
-export { API_GATEWAY, API_KEY };
+export { VITE_HOST };
